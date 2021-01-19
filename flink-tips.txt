@@ -1,0 +1,19 @@
+docker run \
+    --rm \
+    --name=jobmanager \
+    -p 8081:8081 \
+    -p 6123:6123 \
+    -p 6124:6124 \
+    --env FLINK_PROPERTIES="jobmanager.rpc.address: 192.168.8.100" \
+    flink jobmanager
+    
+    
+docker run \
+    --rm \
+    --name=taskmanager \
+    -p 9999:9999 \
+    --env JOB_MANAGER_RPC_ADDRESS="192.168.8.100" \
+    --env FLINK_PROPERTIES="taskmanager.rpc.port: 9999" \
+    flink taskmanager
+
+~/software/flink/bin/flink run -m localhost:8081 -py ./flink_stream.py

@@ -1,0 +1,4 @@
+https://github.com/apache/flink-docker/tree/master/1.12/scala_2.12-java11-debian
+docker build -t flink .
+
+## !! modify docker-entrypoint.sh to be "echo -e >> $FLINK_PRO....." so that the /n will take effect to line break
